@@ -194,15 +194,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 portfolioItems.forEach((item, index) => {
                     const category = item.getAttribute('data-category');
-                    
-                    if (filter === 'all' || category === filter) {
-                        // Show item with animation
+                    const categories = category.split(' ');
+                
+                    if (filter === 'all' || categories.includes(filter)) {
                         setTimeout(() => {
                             item.classList.remove('hide');
                             item.style.display = 'block';
                         }, index * 100);
                     } else {
-                        // Hide item
                         item.classList.add('hide');
                         setTimeout(() => {
                             item.style.display = 'none';
