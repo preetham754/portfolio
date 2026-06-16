@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initScrollAnimations();
     initSkillBars();
     initPortfolioFilter();
-    initContactForm();
     initCounterAnimation();
     initMobileMenu();
     
@@ -142,12 +141,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }, observerOptions);
         
         // Add fade-in class to elements that should animate
-        const animateElements = document.querySelectorAll('.service-card, .project-card, .testimonial-card, .contact-form, .about-content, .skills-section');
-        
-        animateElements.forEach(el => {
-            el.classList.add('fade-in');
-            observer.observe(el);
-        });
+        const animateElements = document.querySelectorAll(
+            '.service-card, .project-card, .testimonial-card, .about-content, .skills-section, .contact-info'
+        );
     }
     
     // Skill Bars Animation
@@ -221,145 +217,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Contact Form
-    function initContactForm() {
-        const form = document.getElementById('contactForm');
-        
-        if (!form) return;
-        
-        // Real-time validation
-        const inputs = form.querySelectorAll('input, textarea');
-        inputs.forEach(input => {
-            input.addEventListener('blur', function() {
-                validateField(this);
-            });
-            
-            input.addEventListener('input', function() {
-                if (this.classList.contains('is-invalid')) {
-                    validateField(this);
-                }
-            });
-        });
-        
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            let isValid = true;
-            inputs.forEach(input => {
-                if (!validateField(input)) {
-                    isValid = false;
-                }
-            });
-            
-            if (isValid) {
-                submitForm();
-            }
-        });
-        
-        function validateField(field) {
-            const value = field.value.trim();
-            const fieldName = field.getAttribute('name');
-            let isValid = true;
-            let errorMessage = '';
-            
-            // Reset previous state
-            field.classList.remove('is-invalid');
-            const feedback = field.nextElementSibling;
-            if (feedback && feedback.classList.contains('invalid-feedback')) {
-                feedback.textContent = '';
-            }
-            
-            // Required field validation
-            if (field.hasAttribute('required') && value === '') {
-                isValid = false;
-                errorMessage = `${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)} is required.`;
-            }
-            
-            // Email validation
-            if (fieldName === 'email' && value !== '') {
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(value)) {
-                    isValid = false;
-                    errorMessage = 'Please enter a valid email address.';
-                }
-            }
-            
-            // Name validation
-            if (fieldName === 'name' && value !== '' && value.length < 2) {
-                isValid = false;
-                errorMessage = 'Name must be at least 2 characters long.';
-            }
-            
-            // Message validation
-            if (fieldName === 'message' && value !== '' && value.length < 10) {
-                isValid = false;
-                errorMessage = 'Message must be at least 10 characters long.';
-            }
-            
-            if (!isValid) {
-                field.classList.add('is-invalid');
-                const feedback = field.nextElementSibling;
-                if (feedback && feedback.classList.contains('invalid-feedback')) {
-                    feedback.textContent = errorMessage;
-                }
-            }
-            
-            return isValid;
-        }
-        
-        function submitForm() {
-            const submitBtn = form.querySelector('button[type="submit"]');
-            const btnText = submitBtn.querySelector('.btn-text');
-            const btnLoading = submitBtn.querySelector('.btn-loading');
-            
-            // Show loading state
-            btnText.classList.add('d-none');
-            btnLoading.classList.remove('d-none');
-            submitBtn.disabled = true;
-            
-            // Simulate form submission (replace with actual submission logic)
-            setTimeout(() => {
-                // Reset button state
-                btnText.classList.remove('d-none');
-                btnLoading.classList.add('d-none');
-                submitBtn.disabled = false;
-                
-                // Show success message
-                showAlert('success', 'Thank you for your message! I\'ll get back to you soon.');
-                
-                // Reset form
-                form.reset();
-                
-                // Remove any validation classes
-                inputs.forEach(input => {
-                    input.classList.remove('is-invalid');
-                    const feedback = input.nextElementSibling;
-                    if (feedback && feedback.classList.contains('invalid-feedback')) {
-                        feedback.textContent = '';
-                    }
-                });
-                
-            }, 2000);
-        }
-        
-        function showAlert(type, message) {
-            // Remove existing alerts
-            const existingAlerts = form.querySelectorAll('.alert');
-            existingAlerts.forEach(alert => alert.remove());
-            
-            // Create new alert
-            const alert = document.createElement('div');
-            alert.className = `alert alert-${type}`;
-            alert.textContent = message;
-            
-            // Insert after form
-            form.parentNode.insertBefore(alert, form.nextSibling);
-            
-            // Remove alert after 5 seconds
-            setTimeout(() => {
-                alert.remove();
-            }, 5000);
-        }
-    }
+    
     
     // Counter Animation
     function initCounterAnimation() {
