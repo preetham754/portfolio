@@ -1619,5 +1619,94 @@
     border: 1px solid #980505;
     margin-right: 10px;
   }
+  /* =========================
+   EDUCATION & EXPERIENCE
+   ========================= */
+
+.education-card,
+.experience-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 25px;
+    transition: all 0.3s ease;
+}
+
+.education-card:hover,
+.experience-card:hover {
+    transform: translateY(-8px);
+    border-color: #00d4ff;
+    box-shadow: 0 10px 25px rgba(0, 212, 255, 0.2);
+}
+
+/* Main Heading */
+.education-card h4,
+.experience-card h4 {
+    color: #ffffff !important;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+/* Institution / Company */
+.education-card .institution,
+.experience-card .company {
+    color: #00d4ff;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+/* Duration */
+.education-card .duration,
+.experience-card .duration {
+    color: #b0b0b0;
+    font-size: 0.95rem;
+    margin-bottom: 12px;
+}
+
+/* CGPA */
+.education-card .cgpa {
+    color: #4ade80;
+    font-weight: 600;
+}
+
+/* Description */
+.education-card p,
+.experience-card p,
+.experience-card li {
+    color: #d1d5db;
+    line-height: 1.8;
+}
+
+/* Bullet Points */
+.experience-card ul {
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+.experience-card li {
+    margin-bottom: 8px;
+}
+
+/* Section Headings */
+#education .section-title,
+#experience .section-title {
+    color: #ffffff;
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+#education .section-subtitle,
+#experience .section-subtitle {
+    color: #b0b0b0;
+    text-align: center;
+    margin-bottom: 50px;
+}
   
   
